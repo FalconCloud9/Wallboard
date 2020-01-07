@@ -1,0 +1,8 @@
+BASE_URL=http://localhost:3000
+# mongodb url
+MONGO_URL = mongodb://localhost:27017/mydb
+# listening port
+L_PORT = 3000
+
+# Wallboard table
+WALL_BOARD_TABLE=wallboards

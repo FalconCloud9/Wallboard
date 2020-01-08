@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { connect } from 'react-redux';
 import Modal from 'react-bootstrap/Modal'
-import BlockForm from '../Forms/BlockForm';
 import './index.css';
 
 const Config = (props) => {
@@ -21,7 +20,7 @@ const Config = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <BlockForm />
+          {/* Todo: Add form */}
         </Modal.Body>
       </Modal>
     </div>

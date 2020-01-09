@@ -12,7 +12,7 @@ export class WsEventListener {
         this.ws = new WebSocket(this.url);
         this.ws.onopen = () => {
             console.log("connected to server");
-            this.ws.send({ key: this.departmentName })
+            this.ws.send(JSON.stringify({ key: this.departmentName }))
         }
 
         this.ws.onmessage = msg => {

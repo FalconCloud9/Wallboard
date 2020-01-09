@@ -7,10 +7,8 @@ function init() {
     const wss = new WebSocketServer({ port: wsPort });
 
     wss.on('connection', ws => {
-        const key = uuid();
         const wsConn = new WsConnection(null, ws);
         wsConn.setUpListener();
-        wsConn.send({ key });
     })
 }
 
@@ -19,7 +17,7 @@ function publish(key, data) {
     console.log("publishing :: " + key, data)
     const wsConn = wsMap[key];
     if (!wsConn) throw "no such key";
-    wsConn.send(data);
+    wsConn.send(JSON.stringify(data));
 }
 
 class WsConnection {
@@ -36,12 +34,18 @@ class WsConnection {
         });
 
         this.ws.on('message', (message) => { // read the deparment from here
-            console.log({ message })
+            const payload = JSON.parse(message);
+            wsMap[payload.key] = this
+            wsMap[payload.key].send("test message");
         })
     }
 
     send(msg) {
-        this.ws.send(msg);
+        try{
+            this.ws.send(msg);
+        }catch(err){
+            console.log("rrrs",err)
+        }
     }
 
 

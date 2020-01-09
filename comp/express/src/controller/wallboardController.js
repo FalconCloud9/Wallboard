@@ -4,7 +4,7 @@ const Err = require("../constants/error");
 const uuid = require("uuid/v4");
 
 class WallboardController extends BaseController {
-    constructor(model, responseWriter,publisher) {
+    constructor(model, responseWriter, publisher) {
         super(model, responseWriter);
         this.create = this.create.bind(this);
         this.getWallboard = this.getWallboard.bind(this);
@@ -45,7 +45,8 @@ class WallboardController extends BaseController {
         try {
             const key = req.params.key;
             if (!key) throw Err.InvalidParams;
-            this.publisher.publish(key, req.body)
+            this.publisher.publish(key, req.body);
+            this.responseWriter.write(res, { msg: "ok" });
         } catch (err) {
             this.responseWriter.err(res, err);
         }

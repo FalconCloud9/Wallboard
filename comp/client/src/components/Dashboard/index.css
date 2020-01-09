@@ -1,0 +1,22 @@
+.carousel-item{
+    height: 100vh;
+    width: 100%;
+}
+
+.carousel-indicators {
+    margin-bottom: 10px;
+}
+
+.carousel-content .carousel-indicators li{
+    background-color: black;
+    border-radius: 20px;
+    width: 6px;
+    height: 6px;
+    border-top: 0px;
+    border-bottom: 0px;
+}
+
+.carousel-item iframe{
+    width: 100%;
+    height: 100%;
+}

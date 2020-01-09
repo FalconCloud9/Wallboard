@@ -10,13 +10,14 @@ const Config = (props) => {
   const {canvasList, dispatch} = props;
   const [blockModalShow, setBlockModalShow] = useState(false);
 
-  const handleSave = (title) => {
+  const handleSave = ({title, singleWindow}) => {
     const canvasOrder = canvasList.length + 1;
     const newCanvasObj = {
       id: `canvas-${canvasOrder}`,
       order: canvasOrder,
       title,
       windows: [],
+      single: singleWindow
     }
     dispatch(saveCanvas([...props.canvasList, newCanvasObj]));
     setBlockModalShow(false);
@@ -29,7 +30,7 @@ const Config = (props) => {
   return (
     <div className="container-fluid vh-100">
       <div className="row p-4">
-        <div className="col-3 canvas-block mr-3" onClick={handleNewCanvasClick}>
+        <div className="col-3 canvas-block mr-3 mb-2" onClick={handleNewCanvasClick}>
           <i className="fa fa-plus"/>
         </div>
         {
@@ -37,7 +38,7 @@ const Config = (props) => {
             return (
               <Link
                 key={canvas.id}
-                className="canvas-block-link col-3 mr-3"
+                className="canvas-block-link col-3 mr-3 mb-2"
                 to={`/${canvas.id}/edit`}
               >
                 <h2>{canvas.title}</h2>

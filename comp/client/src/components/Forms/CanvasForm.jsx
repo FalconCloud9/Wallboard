@@ -42,7 +42,7 @@ export default function CanvasForm(props) {
           >
             Save
           </button>
-          <button type="button" className="btn btn-primary">
+          <button type="button" className="btn btn-primary" onClick={props.handleCancel}>
             Cancel
           </button>
         </div>

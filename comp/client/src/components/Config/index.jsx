@@ -27,10 +27,21 @@ const Config = (props) => {
     setBlockModalShow(true);
   }
 
+  const handleDeleteClick = (evt, canvasId) => {
+    evt.preventDefault();
+    const updatedFilter = canvasList.filter( canvas => {
+      return (
+        canvas.id !== canvasId
+      )
+    });
+    dispatch(saveCanvas(updatedFilter));
+  }
+
   return (
     <div className="container-fluid vh-100">
       <div className="row p-4">
         <div className="col-3 canvas-block mr-3 mb-2" onClick={handleNewCanvasClick}>
+          <h2>Create a Canvas</h2>
           <i className="fa fa-plus"/>
         </div>
         {
@@ -38,9 +49,10 @@ const Config = (props) => {
             return (
               <Link
                 key={canvas.id}
-                className="canvas-block-link col-3 mr-3 mb-2"
+                className="canvas-block-link col-3 mr-3 mb-2 position-relative"
                 to={`/${canvas.id}/edit`}
               >
+                <div className="delete-btn" onClick={(evt) => handleDeleteClick(evt, canvas.id)}>x</div>
                 <h2>{canvas.title}</h2>
               </Link>
             )
@@ -58,7 +70,7 @@ const Config = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <CanvasForm handleSave={handleSave} />
+          <CanvasForm handleSave={handleSave} handleCancel={() => setBlockModalShow(false)}/>
         </Modal.Body>
       </Modal>
     </div>

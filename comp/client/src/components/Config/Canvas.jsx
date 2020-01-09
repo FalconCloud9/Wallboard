@@ -84,7 +84,7 @@ const Canvas = props => {
       </div>
       <button className="btn btn-primary create-window" onClick={() => setBlockModalShow(true)}>Create Window</button>
       <div className="canvas-container h-100">
-        {windows.length && renderLayout()}
+        {windows.length ? renderLayout() : null}
       </div>
       <Modal
         show={blockModalShow}

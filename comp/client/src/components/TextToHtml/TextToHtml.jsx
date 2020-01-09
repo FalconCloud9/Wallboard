@@ -6,7 +6,7 @@ const TextToHtml = (props) => {
   return (
     <div className="text-center h-100 text-html">
       <div className="cover-containers h-100 d-flex w-100 p-3 mx-auto flex-column">
-        <header className="masthead mb-auto">
+        <header className="masthead mb-auto text-left">
           <div className="inner">
             <h3 className="masthead-brand">{header}</h3>
           </div>

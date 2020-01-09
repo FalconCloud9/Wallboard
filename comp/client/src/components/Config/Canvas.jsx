@@ -12,15 +12,16 @@ const Canvas = props => {
   const [blockModalShow, setBlockModalShow] = useState(false);
   const canvasId = props.match.params.id;
   const currentCanvas = props.canvasList.find(canvas => canvas.id === canvasId);
-  const { windows, layout } = currentCanvas;
+  const { windows, layout, single } = currentCanvas;
 
   const handleSave = (data) => {
-    const {title, url} = data;
+    const {title, content, type} = data;
     const windowId = `${canvasId}window-${windows.length + 1}`
     const newWindow = {
       id: windowId,
       title,
-      url,
+      content,
+      type,
       layout: {i: windowId, x: 0, y: 0, w: 2, h: 2}
     };
     const updatedCanvas = props.canvasList.map( canvas => {
@@ -33,19 +34,45 @@ const Canvas = props => {
     setBlockModalShow(false);
   }
 
-  const renderWindow = (window) => {
-    console.log(window);
-    if (window.type === 'url') {
+  const handleLayoutChange = (layout) => {
+    const updatedWindows = windows.map( (window, index) => {
+      window.layout = layout[index];
+      return window;
+    });
+    const updatedCanvas = props.canvasList.map ( canvas => {
+      if (canvas.id === canvasId) {
+        canvas.windows = updatedWindows;
+      }
+      return canvas;
+    });
+    props.dispatch(saveCanvas(updatedCanvas));    
+  }
+
+  const renderLayout = () => {
+    return single ? <div className="h-100 w-100">
+      <div className="h-100 w-100" key={window.id} data-grid={window.layout}>
+        {renderWindow(windows[0])}
+      </div>
+    </div> :
+    <GridLayout className="layout" cols={12} rowHeight={50} width={window.innerWidth - 30} isDraggable={true} containerPadding={[15, 15]} onLayoutChange={handleLayoutChange}>
+    { windows.map( (window) => {
       return (
         <div className="custom-grid-item" key={window.id} data-grid={window.layout}>
-          <iframe className="window-iframe" src={window.url} />
+          {renderWindow(window)}
         </div>
+      )
+    })}
+  </GridLayout>
+  }
+
+  const renderWindow = (window) => {
+    if (window.type === 'url') {
+      return (
+        <iframe className="window-iframe" src={window.content.url} />
       )
     }
     return(
-      <div className="custom-grid-item" key={window.id} data-grid={window.layout}>
         <TextToHtml content={window.content}/>
-      </div>
     )
   }
 
@@ -54,16 +81,10 @@ const Canvas = props => {
       <Link to={'/config'}><i className="fa fa-arrow-left"></i></Link>
       <div className="canvas-edit-header d-flex justify-content-between">
         <h2>{currentCanvas.title}</h2>
-        <button className="btn btn-primary create-window" onClick={() => setBlockModalShow(true)}>Create</button>
       </div>
+      <button className="btn btn-primary create-window" onClick={() => setBlockModalShow(true)}>Create Window</button>
       <div className="canvas-container h-100">
-        <GridLayout className="layout" cols={12} rowHeight={50} width={1200} isDraggable={true}>
-          { windows.map( (window, index) => {
-            return (
-              renderWindow(window)
-            )
-          })}
-        </GridLayout>
+        {windows.length && renderLayout()}
       </div>
       <Modal
         show={blockModalShow}

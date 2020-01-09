@@ -14,12 +14,13 @@ const Canvas = props => {
   const { windows, layout, single } = currentCanvas;
 
   const handleSave = (data) => {
-    const {title, url} = data;
+    const {title, content, type} = data;
     const windowId = `${canvasId}window-${windows.length + 1}`
     const newWindow = {
       id: windowId,
       title,
-      url,
+      content,
+      type,
       layout: {i: windowId, x: 0, y: 0, w: 2, h: 2}
     };
     const updatedCanvas = props.canvasList.map( canvas => {
@@ -40,8 +41,7 @@ const Canvas = props => {
     { windows.map( (window) => {
       return (
         <div className="custom-grid-item" key={window.id} data-grid={window.layout}>
-          {/* <div>{window.url}</div> */}
-          <iframe className="window-iframe" src={window.url} />
+          <iframe className="window-iframe" src={window.content.url} />
         </div>
       )
     })}
@@ -53,8 +53,8 @@ const Canvas = props => {
       <Link to={'/config'}><i className="fa fa-arrow-left"></i></Link>
       <div className="canvas-edit-header d-flex justify-content-between">
         <h2>{currentCanvas.title}</h2>
-        <button className="btn btn-primary create-window" onClick={() => setBlockModalShow(true)}>Create</button>
       </div>
+      <button className="btn btn-primary create-window" onClick={() => setBlockModalShow(true)}>Create</button>
       <div className="canvas-container h-100">
         {renderLayout()}
       </div>

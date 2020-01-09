@@ -20,7 +20,7 @@ export default function CanvasForm(props) {
             <Form.Label>Title</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter url"
+              placeholder="Enter title"
               value={title}
               onChange={evt => setTitle(evt.target.value)}
             />

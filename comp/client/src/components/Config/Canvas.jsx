@@ -9,7 +9,6 @@ import './index.css';
 import TextToHtml from '../TextToHtml/TextToHtml';
 
 const Canvas = props => {
-  console.log(props);
   const [blockModalShow, setBlockModalShow] = useState(false);
   const canvasId = props.match.params.id;
   const currentCanvas = props.canvasList.find(canvas => canvas.id === canvasId);
@@ -35,13 +34,27 @@ const Canvas = props => {
     setBlockModalShow(false);
   }
 
+  const handleLayoutChange = (layout) => {
+    const updatedWindows = windows.map( (window, index) => {
+      window.layout = layout[index];
+      return window;
+    });
+    const updatedCanvas = props.canvasList.map ( canvas => {
+      if (canvas.id === canvasId) {
+        canvas.windows = updatedWindows;
+      }
+      return canvas;
+    });
+    props.dispatch(saveCanvas(updatedCanvas));    
+  }
+
   const renderLayout = () => {
     return single ? <div className="h-100 w-100">
       <div className="h-100 w-100" key={window.id} data-grid={window.layout}>
         {renderWindow(windows[0])}
       </div>
     </div> :
-    <GridLayout className="layout" cols={12} rowHeight={50} width={window.innerWidth - 30} isDraggable={true} containerPadding={[15, 15]}>
+    <GridLayout className="layout" cols={12} rowHeight={50} width={window.innerWidth - 30} isDraggable={true} containerPadding={[15, 15]} onLayoutChange={handleLayoutChange}>
     { windows.map( (window) => {
       return (
         <div className="custom-grid-item" key={window.id} data-grid={window.layout}>
@@ -69,7 +82,7 @@ const Canvas = props => {
       <div className="canvas-edit-header d-flex justify-content-between">
         <h2>{currentCanvas.title}</h2>
       </div>
-      <button className="btn btn-primary create-window" onClick={() => setBlockModalShow(true)}>Create</button>
+      <button className="btn btn-primary create-window" onClick={() => setBlockModalShow(true)}>Create Window</button>
       <div className="canvas-container h-100">
         {windows.length && renderLayout()}
       </div>

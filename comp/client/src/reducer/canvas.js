@@ -7,9 +7,9 @@ export const initialState = {
       windows: [
         {
           title: 'window-1',
-          url: 'https://weather.com/',
+          url: 'https://falconcloud9.github.io/food-menu/',
           id: 'canvas-1window-1',
-          layout:  {i: 'canvas-1window-1', x: 0, y: 0, w: 4, h: 4}
+          layout:  {i: 'canvas-1window-1', x: 0, y: 0, w: 3, h: 4}
         }
       ],
     }

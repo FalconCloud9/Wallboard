@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { saveCanvas } from '../../action';
 import WindowForm from '../Forms/WindowForm';
 import {Link} from 'react-router-dom';
+import './index.css';
 
 const Canvas = props => {
   const [blockModalShow, setBlockModalShow] = useState(false);
@@ -19,7 +20,7 @@ const Canvas = props => {
       id: windowId,
       title,
       url,
-      layout: {i: windowId, x: 0, y: 0, w: 4, h: 4}
+      layout: {i: windowId, x: 0, y: 0, w: 2, h: 2}
     };
     const updatedCanvas = props.canvasList.map( canvas => {
       if (canvas.id === canvasId) {
@@ -32,18 +33,19 @@ const Canvas = props => {
   }
 
   return (
-    <>
+    <div className="container-fluid vh-100">
       <Link to={'/config'}><i className="fa fa-arrow-left"></i></Link>
       <div className="canvas-edit-header d-flex justify-content-between">
         <h2>{currentCanvas.title}</h2>
         <button className="btn btn-primary create-window" onClick={() => setBlockModalShow(true)}>Create</button>
       </div>
-      <div className="container-fluid canvas-container vh-100">
-        <GridLayout className="layout" cols={12} rowHeight={100} width={1200} isDraggable={true}>
+      <div className="canvas-container h-100">
+        <GridLayout className="layout" cols={12} rowHeight={50} width={1200} isDraggable={true}>
           { windows.map( (window, index) => {
             return (
-              <div className="border" key={window.id} data-grid={window.layout}>
-                <div>{window.url}</div>
+              <div className="custom-grid-item" key={window.id} data-grid={window.layout}>
+                {/* <div>{window.url}</div> */}
+                <iframe className="window-iframe" src={window.url} />
               </div>
             )
           })}
@@ -63,7 +65,7 @@ const Canvas = props => {
           <WindowForm handleSave={handleSave}/>
         </Modal.Body>
       </Modal>
-    </>
+    </div>
   )
 }
 

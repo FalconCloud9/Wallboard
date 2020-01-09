@@ -37,3 +37,12 @@
 .create-window {
   height: 40px;
 }
+
+.window-iframe {
+  height: 100%;
+  width: 100%;
+}
+
+.custom-grid-item {
+  border: 10px solid grey;
+}

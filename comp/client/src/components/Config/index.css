@@ -1,0 +1,7 @@
+.window-block {
+  padding: 80px 0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 36px;
+  text-align: center;
+}

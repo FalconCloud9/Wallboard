@@ -1,5 +1,5 @@
 export const initialState = {
-  windows: ['yo']
+  windows: []
 };
 
 const window = (state = initialState, action) => {

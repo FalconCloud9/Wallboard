@@ -3,12 +3,13 @@ const BaseController = require("./baseController");
 const Err = require("../constants/error");
 const uuid = require("uuid/v4");
 
-
 class WallboardController extends BaseController {
-    constructor(model, responseWriter) {
+    constructor(model, responseWriter,publisher) {
         super(model, responseWriter);
         this.create = this.create.bind(this);
         this.getWallboard = this.getWallboard.bind(this);
+        this.publishMessage = this.publishMessage.bind(this);
+        this.publisher = publisher
     }
 
     /**
@@ -34,6 +35,17 @@ class WallboardController extends BaseController {
             body.uuid = uuid();
             req.body = body;
             super.create(req, res);
+        } catch (err) {
+            this.responseWriter.err(res, err);
+        }
+    }
+
+
+    async publishMessage(req, res) {
+        try {
+            const key = req.params.key;
+            if (!key) throw Err.InvalidParams;
+            this.publisher.publish(key, req.body)
         } catch (err) {
             this.responseWriter.err(res, err);
         }

@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const Routes = require("./routes");
 const bodyParser = require("body-parser");
+const publisher = require("./wsPublisher");
 
 async function init() {
     const envPath = path.join(__dirname, "../", "/config/env");
@@ -28,7 +29,7 @@ async function init() {
         /* tslint:disable */
         return console.log(`server is listening on ${port}`);
     });
-
+    publisher.init()
     Routes.initialize(app);
 }
 

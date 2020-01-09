@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const Routes = require("./routes");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 async function init() {
     const envPath = path.join(__dirname, "../", "/config/env");
@@ -16,7 +17,8 @@ async function init() {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
-
+    
+    app.use(cors());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(express.static("public"));

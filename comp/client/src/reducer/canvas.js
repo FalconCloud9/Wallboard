@@ -32,6 +32,9 @@ const canvas = (state = initialState, action) => {
     case 'SAVE_CANVAS':
       newState.canvasList = payload;
       return newState;
+    case 'FETCH_WALLBOARD_DATA':
+      newState.canvasList = payload;
+      return payload;
     default:
       return state;
   }

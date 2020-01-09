@@ -3,11 +3,12 @@ import { Form } from "react-bootstrap";
 
 export default function CanvasForm(props) {
   const [title, setTitle] = useState("");
+  const [singleWindow, setSingleWindow] = useState(true);
 
   const handleClick = evt => {
     evt.preventDefault();
     if (title.length) {
-      props.handleSave(title);
+      props.handleSave({title, singleWindow});
     }
   };
 
@@ -24,8 +25,14 @@ export default function CanvasForm(props) {
               onChange={evt => setTitle(evt.target.value)}
             />
           </Form.Group>
+          <Form.Label>Number of Windows</Form.Label>
+          <Form.Group>
+            <Form.Check inline checked={singleWindow} label="Single" type="radio" id={`inline-radio-1`} name="window-select" onChange={() => setSingleWindow(true)} />
+            <Form.Check inline checked={!singleWindow} label="Multiple" type="radio" id={`inline-radio-2`} name="window-select" onChange={() => setSingleWindow(false)} />
+          </Form.Group>
         </div>
       </div>
+
       <div className="row">
         <div className="col-12 d-flex justify-content-end">
           <button

@@ -1,18 +1,20 @@
 export const initialState = {
   canvasList: [
-    { 
+    {
       id: 'canvas-1',
       title: 'Canvas 1',
       order: 1,
+      single: false,
       windows: [
         {
           title: 'window-1',
-          url: 'https://falconcloud9.github.io/food-menu/',
+          url: 'https://docs.google.com/spreadsheets/d/12HBaG2yxOSQsM5VaUrSHRTjl5S7pgr1W07e0ZHhzFwA/edit#gid=369566078',
           id: 'canvas-1window-1',
-          layout:  {i: 'canvas-1window-1', x: 0, y: 0, w: 3, h: 4}
+          layout:  {i: 'canvas-1window-1', x: 0, y: 0, w: 3, h: 4},
+          type: 'url'
         }
       ],
-    }
+    },
   ]
 };
 

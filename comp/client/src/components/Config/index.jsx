@@ -10,13 +10,14 @@ const Config = (props) => {
   const {canvasList, dispatch} = props;
   const [blockModalShow, setBlockModalShow] = useState(false);
 
-  const handleSave = (title) => {
+  const handleSave = ({title, singleWindow}) => {
     const canvasOrder = canvasList.length + 1;
     const newCanvasObj = {
       id: `canvas-${canvasOrder}`,
       order: canvasOrder,
       title,
       windows: [],
+      single: singleWindow
     }
     dispatch(saveCanvas([...props.canvasList, newCanvasObj]));
     setBlockModalShow(false);

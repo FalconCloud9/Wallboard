@@ -1,6 +1,6 @@
 export const initialState = {
   canvasList: [
-    { 
+    {
       id: 'canvas-1',
       title: 'Canvas 1',
       order: 1,
@@ -9,7 +9,7 @@ export const initialState = {
           title: 'window-1',
           url: 'https://falconcloud9.github.io/food-menu/',
           id: 'canvas-1window-1',
-          layout:  {i: 'canvas-1window-1', x: 0, y: 0, w: 3, h: 4}
+          layout: { i: 'canvas-1window-1', x: 0, y: 0, w: 3, h: 4 }
         }
       ],
     }
@@ -23,6 +23,9 @@ const canvas = (state = initialState, action) => {
     case 'SAVE_CANVAS':
       newState.canvasList = payload;
       return newState;
+    case 'FETCH_WALLBOARD_DATA':
+      newState.canvasList = payload;
+      return payload;
     default:
       return state;
   }

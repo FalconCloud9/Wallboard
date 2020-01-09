@@ -6,6 +6,7 @@ import { saveCanvas } from '../../action';
 import WindowForm from '../Forms/WindowForm';
 import {Link} from 'react-router-dom';
 import './index.css';
+import TextToHtml from '../TextToHtml/TextToHtml';
 
 const Canvas = props => {
   const [blockModalShow, setBlockModalShow] = useState(false);
@@ -35,17 +36,30 @@ const Canvas = props => {
 
   const renderLayout = () => {
     return single ? <div className="h-100 w-100">
-      {windows.length && windows[0].title}
+      {renderWindow(window)}
     </div> :
     <GridLayout className="layout" cols={12} rowHeight={50} width={window.innerWidth - 30} isDraggable={true} containerPadding={[15, 15]}>
     { windows.map( (window) => {
+      return (
+        renderWindow(window)
+      )
+    })}
+  </GridLayout>
+  }
+
+  const renderWindow = (window) => {
+    if (window.type === 'url') {
       return (
         <div className="custom-grid-item" key={window.id} data-grid={window.layout}>
           <iframe className="window-iframe" src={window.content.url} />
         </div>
       )
-    })}
-  </GridLayout>
+    }
+    return(
+      <div className="custom-grid-item" key={window.id} data-grid={window.layout}>
+        <TextToHtml content={window.content}/>
+      </div>
+    )
   }
 
   return (

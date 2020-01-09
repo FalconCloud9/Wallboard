@@ -21,8 +21,8 @@ const Dashboard = (props) => {
               <Carousel.Item key={canvas.id} className="carousel-item">
                 <iframe src="https://falconcloud9.github.io/food-menu/"></iframe>
                 <Carousel.Caption>
-                  <h3>{canvas.title}</h3>
-                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                  {/* <h3>{canvas.title}</h3>
+                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
                 </Carousel.Caption>
               </Carousel.Item>
             )

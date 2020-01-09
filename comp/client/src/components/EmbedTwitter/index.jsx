@@ -30,6 +30,7 @@ const EmbedTwitter = () => {
         {
           screenName ?
             <TwitterTimelineEmbed
+              key={screenName}
               sourceType="profile"
               screenName={screenName}
               options={{ height: 400 }}

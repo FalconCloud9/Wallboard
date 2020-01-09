@@ -9,6 +9,7 @@ import './index.css';
 import TextToHtml from '../TextToHtml/TextToHtml';
 
 const Canvas = props => {
+  console.log(props);
   const [blockModalShow, setBlockModalShow] = useState(false);
   const canvasId = props.match.params.id;
   const currentCanvas = props.canvasList.find(canvas => canvas.id === canvasId);
@@ -36,12 +37,16 @@ const Canvas = props => {
 
   const renderLayout = () => {
     return single ? <div className="h-100 w-100">
-      {renderWindow(window)}
+      <div className="h-100 w-100" key={window.id} data-grid={window.layout}>
+        {renderWindow(windows[0])}
+      </div>
     </div> :
     <GridLayout className="layout" cols={12} rowHeight={50} width={window.innerWidth - 30} isDraggable={true} containerPadding={[15, 15]}>
     { windows.map( (window) => {
       return (
-        renderWindow(window)
+        <div className="custom-grid-item" key={window.id} data-grid={window.layout}>
+          {renderWindow(window)}
+        </div>
       )
     })}
   </GridLayout>
@@ -50,15 +55,11 @@ const Canvas = props => {
   const renderWindow = (window) => {
     if (window.type === 'url') {
       return (
-        <div className="custom-grid-item" key={window.id} data-grid={window.layout}>
-          <iframe className="window-iframe" src={window.content.url} />
-        </div>
+        <iframe className="window-iframe" src={window.content.url} />
       )
     }
     return(
-      <div className="custom-grid-item" key={window.id} data-grid={window.layout}>
         <TextToHtml content={window.content}/>
-      </div>
     )
   }
 
@@ -70,7 +71,7 @@ const Canvas = props => {
       </div>
       <button className="btn btn-primary create-window" onClick={() => setBlockModalShow(true)}>Create</button>
       <div className="canvas-container h-100">
-        {renderLayout()}
+        {windows.length && renderLayout()}
       </div>
       <Modal
         show={blockModalShow}

@@ -2,6 +2,7 @@ import React from 'react';
 import './TextToHtml.css';
 
 const TextToHtml = (props) => {
+  console.log(props);
   const {header, title, body, footer} = props.content;
   return (
     <div className="text-center h-100 text-html">

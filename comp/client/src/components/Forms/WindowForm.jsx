@@ -119,7 +119,7 @@ export default function WindowForm(props) {
   return (
     <div className="col-12">
       <div className="row">
-        <div className="col-12">
+        {/* <div className="col-12">
           <Form.Group>
             <Form.Label>Title</Form.Label>
             <Form.Control
@@ -129,7 +129,7 @@ export default function WindowForm(props) {
               onChange={evt => setTitle(evt.target.value)}
             />
           </Form.Group>
-        </div>
+        </div> */}
         <div className="col-12 mb-3">
           <Form.Label>Type</Form.Label>
           <Select

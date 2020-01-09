@@ -7,6 +7,7 @@ import './index.css';
 import CanvasForm from '../Forms/CanvasForm';
 
 const Config = (props) => {
+  console.log(props);
   const {canvasList, dispatch} = props;
   const [blockModalShow, setBlockModalShow] = useState(false);
 

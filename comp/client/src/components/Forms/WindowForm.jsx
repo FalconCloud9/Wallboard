@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 
-export default function CanvasForm(props) {
-  const [title, setTitle] = useState("");
+export default function WindowForm(props) {
+  const [title, setTitle] = useState('');
+  const [url, setUrl] = useState('');
 
   const handleClick = evt => {
     evt.preventDefault();
-    if (title.length) {
-      props.handleSave(title);
+    if (title.length && url.length) {
+      props.handleSave({title, url});
     }
   };
 
@@ -19,9 +20,20 @@ export default function CanvasForm(props) {
             <Form.Label>Title</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter url"
+              placeholder="Enter title"
               value={title}
               onChange={evt => setTitle(evt.target.value)}
+            />
+          </Form.Group>
+        </div>
+        <div className="col-12">
+          <Form.Group>
+            <Form.Label>Url</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter url"
+              value={url}
+              onChange={evt => setUrl(evt.target.value)}
             />
           </Form.Group>
         </div>

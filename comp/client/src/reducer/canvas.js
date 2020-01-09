@@ -8,12 +8,10 @@ export const initialState = {
         {
           title: 'window-1',
           url: 'https://weather.com/',
-          id: 'canvas-1window-1'
+          id: 'canvas-1window-1',
+          layout:  {i: 'canvas-1window-1', x: 0, y: 0, w: 4, h: 4}
         }
       ],
-      layout: [
-        {i: 'canvas-1window-1', x: 0, y: 0, w: 4, h: 4}
-      ]
     }
   ]
 };

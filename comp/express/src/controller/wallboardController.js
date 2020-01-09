@@ -27,7 +27,10 @@ class WallboardController extends BaseController {
             if (!body.wallboard) throw Err.InvalidParams;
             if (!body.departmentName) throw Err.InvalidParams;
             const wallboards = await this.model.get({ departmentName: body.departmentName });
-            if (wallboards.length != 0) throw Err.WallboardAlreadyRegistered;
+            if (wallboards.length != 0) {
+                this.update(req, res);
+                return;
+            }
             body.uuid = uuid();
             req.body = body;
             super.create(req, res);

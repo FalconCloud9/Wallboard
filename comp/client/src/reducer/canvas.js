@@ -1,6 +1,6 @@
 export const initialState = {
   canvasList: [
-    { 
+    {
       id: 'canvas-1',
       title: 'Canvas 1',
       order: 1,
@@ -31,6 +31,9 @@ const canvas = (state = initialState, action) => {
     case 'SAVE_CANVAS':
       newState.canvasList = payload;
       return newState;
+    case 'FETCH_WALLBOARD_DATA':
+      newState.canvasList = payload;
+      return payload;
     default:
       return state;
   }

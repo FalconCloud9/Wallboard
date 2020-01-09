@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 
-export default function WindowForm(props) {
+export default function CanvasForm(props) {
   const [title, setTitle] = useState("");
 
   const handleClick = evt => {

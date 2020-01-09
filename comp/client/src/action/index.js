@@ -1,4 +1,4 @@
-export const saveWindows = (windows) => ({
-  type: 'SAVE_WINDOWS',
-  payload: windows,
+export const saveCanvas = (canvasList) => ({
+  type: 'SAVE_CANVAS',
+  payload: canvasList,
 });

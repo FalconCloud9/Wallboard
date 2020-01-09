@@ -1,47 +1,46 @@
 import React, {useState} from "react";
 import { connect } from 'react-redux';
-import Modal from 'react-bootstrap/Modal'
-import { saveWindows } from '../../action';
+import Modal from 'react-bootstrap/Modal';
+import {Link} from 'react-router-dom';
+import { saveCanvas } from '../../action';
 import './index.css';
-import WindowForm from '../Forms/WindowForm';
+import CanvasForm from '../Forms/CanvasForm';
 
 const Config = (props) => {
-  const {windows, dispatch} = props;
+  const {canvasList, dispatch} = props;
   const [blockModalShow, setBlockModalShow] = useState(false);
-  const [selectedWindow, setSelectedWindow] = useState(null);
 
   const handleSave = (title) => {
-    const windowOrder = window.length + 1;
-    const windowObj = {
-      order: windowOrder,
+    const canvasOrder = canvasList.length + 1;
+    const newCanvasObj = {
+      order: canvasOrder,
       title,
-      id: `window-${windowOrder}`
+      id: `canvas-${canvasOrder}`
     }
-    dispatch(saveWindows([...props.windows, windowObj]));
+    dispatch(saveCanvas([...props.canvasList, newCanvasObj]));
     setBlockModalShow(false);
   }
 
-  const handleNewWindowClick = () => {
-    setSelectedWindow(null);
+  const handleNewCanvasClick = () => {
     setBlockModalShow(true);
-  }
-
-  const handleBlockClick = () => {
-    setSelectedWindow()
   }
 
   return (
     <div className="container-fluid vh-100">
       <div className="row p-4">
-        <div className="col-3 window-block mr-3" onClick={handleNewWindowClick}>
+        <div className="col-3 canvas-block mr-3" onClick={handleNewCanvasClick}>
           <i className="fa fa-plus"/>
         </div>
         {
-          windows.map( window => {
-            return(
-              <div key={window.id} className="col-3 window-block mr-3" onClick={(evt, window) => handleBlockClick(window)}>
-                <h2>{window.title}</h2>
-              </div>
+          canvasList.map( canvas => {
+            return (
+              <Link
+                key={canvas.id}
+                className="canvas-block-link col-3 mr-3"
+                to={`/${canvas.id}/edit`}
+              >
+                <h2>{canvas.title}</h2>
+              </Link>
             )
           })
         }
@@ -53,18 +52,18 @@ const Config = (props) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-sm">
-            Add New Window
+            Add New Canvas
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <WindowForm handleSave={handleSave} selectedWindow={selectedWindow} />
+          <CanvasForm handleSave={handleSave} />
         </Modal.Body>
       </Modal>
     </div>
   );
 }
 const mapStateToProps = (store) => ({
-  windows: store.window.windows
+  canvasList: store.canvas.canvasList
 });
 
 export default connect(mapStateToProps)(Config);

@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import Select from "react-select";
 
 export default function WindowForm(props) {
-  const [title, setTitle] = useState('');
+  const [widgetHtml, setWidgetHtml] = useState('');
 
   const [coverHeader, setCoverHeader] = useState('');
   const [coverTitle, setCoverTitle] = useState('');
@@ -20,6 +20,10 @@ export default function WindowForm(props) {
     {
       label: 'Coverpage',
       value: 'coverpage'
+    },
+    {
+      label: 'Widget',
+      value: 'widget'
     }
   ]
 
@@ -28,7 +32,6 @@ export default function WindowForm(props) {
     let formData;
     if (selectedType.value === 'url') {
       formData = {
-        title,
         type: selectedType.value,
         content: {
           url
@@ -36,7 +39,6 @@ export default function WindowForm(props) {
       }
     } else if (selectedType.value === 'coverpage') {
       formData = {
-        title,
         type: selectedType.value,
         content: {
           title: coverTitle,
@@ -45,7 +47,15 @@ export default function WindowForm(props) {
           footer: coverFooter
         }
       }
+    } else if (selectedType.value === 'widget') {
+      formData = {
+        type: selectedType.value,
+        content: {
+          widgetHtml
+        }
+      }
     }
+    console.log(formData);
     props.handleSave(formData);
   };
 
@@ -60,6 +70,21 @@ export default function WindowForm(props) {
               placeholder="Enter url"
               value={url}
               onChange={evt => setUrl(evt.target.value)}
+            />
+          </Form.Group>
+        </div>
+      )
+    }
+    if (selectedType.value === 'widget') {
+      return(
+        <div className="col-12">
+          <Form.Group>
+            <Form.Label>Enter widget</Form.Label>
+            <Form.Control
+              type="textarea"
+              placeholder="Enter widget"
+              value={widgetHtml}
+              onChange={evt => setWidgetHtml(evt.target.value)}
             />
           </Form.Group>
         </div>

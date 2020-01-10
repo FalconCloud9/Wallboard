@@ -6,14 +6,14 @@ import { saveCanvas } from '../../action';
 import WindowForm from '../Forms/WindowForm';
 import {Link} from 'react-router-dom';
 import './index.css';
+import { createMarkup } from '../../utils';
 import TextToHtml from '../TextToHtml/TextToHtml';
 
 const Canvas = props => {
   const [blockModalShow, setBlockModalShow] = useState(false);
   const canvasId = props.match.params.id;
   const currentCanvas = props.canvasList.find(canvas => canvas.id === canvasId);
-  const { windows, layout, single } = currentCanvas;
-
+  const { windows, single } = currentCanvas;
   const handleSave = (data) => {
     const {title, content, type} = data;
     const windowId = `${canvasId}window-${windows.length + 1}`
@@ -22,7 +22,7 @@ const Canvas = props => {
       title,
       content,
       type,
-      layout: {i: windowId, x: 0, y: 0, w: 2, h: 2}
+      layout: {i: windowId, x: 0, y: 0, w: 4, h: 6}
     };
     const updatedCanvas = props.canvasList.map( canvas => {
       if (canvas.id === canvasId) {
@@ -71,9 +71,17 @@ const Canvas = props => {
         <iframe className="window-iframe" src={window.content.url} />
       )
     }
-    return(
+    if(window.type === 'coverpage') {
+      return(
         <TextToHtml content={window.content}/>
-    )
+      )
+    }
+    if(window.type === 'widget') {
+      const widgetHtml = window.content.widgetHtml;
+      return (
+        <div className="widget-container" dangerouslySetInnerHTML={createMarkup(widgetHtml)}></div>
+      )
+    }
   }
 
   return (

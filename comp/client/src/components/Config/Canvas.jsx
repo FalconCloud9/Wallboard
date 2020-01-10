@@ -14,6 +14,7 @@ const Canvas = props => {
   const canvasId = props.match.params.id;
   const currentCanvas = props.canvasList.find(canvas => canvas.id === canvasId);
   const { windows, single } = currentCanvas;
+
   const handleSave = data => {
     const { title, content, type } = data;
     const windowId = `${canvasId}window-${windows.length + 1}`;
@@ -99,19 +100,27 @@ const Canvas = props => {
   };
 
   return (
-    <div className="container-fluid vh-100">
+    <div className="container-fluid vh-100 pt-2">
       <Link to={"/config"}>
         <i className="fa fa-arrow-left"></i>
       </Link>
       <div className="canvas-edit-header d-flex justify-content-between">
         <h2>{currentCanvas.title}</h2>
       </div>
-      <button
+      { (!single || windows.length === 0) ? <button
         className="btn btn-primary create-window"
         onClick={() => setBlockModalShow(true)}
       >
         Create Window
-      </button>
+      </button> : null }
+      {
+        single && windows.length ? <button
+        className="btn btn-primary create-window"
+        onClick={() => setBlockModalShow(true)}
+        >
+          Edit Window
+        </button> : null
+      }
       <div className="canvas-container h-100">
         {windows.length ? renderLayout() : null}
       </div>
@@ -126,7 +135,7 @@ const Canvas = props => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <WindowForm handleSave={handleSave} />
+          <WindowForm handleSave={handleSave} currentWindow={windows[0]} />
         </Modal.Body>
       </Modal>
     </div>

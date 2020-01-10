@@ -40,10 +40,13 @@ const Config = (props) => {
   return (
     <div className="container-fluid vh-100">
       <div className="row p-4">
-        <div className="col-3 canvas-block mr-3 mb-2" onClick={handleNewCanvasClick}>
-          <h2>Create a Canvas</h2>
-          <i className="fa fa-plus"/>
+        <div className="col-12 p-0">
+          <h2>Configuration Page</h2>
         </div>
+      <div className="col-3 canvas-block mr-3 mb-2" onClick={handleNewCanvasClick}>
+        <h2>Create new Canvas</h2>
+        <i className="fa fa-plus"/>
+      </div>
         {
           canvasList.map( canvas => {
             return (

@@ -37,11 +37,21 @@ const Config = (props) => {
     dispatch(saveCanvas(updatedFilter));
   }
 
+  const goToDashboard = () => {
+    props.history.push('/');
+  }
+
   return (
     <div className="container-fluid vh-100">
       <div className="row p-4">
         <div className="col-12 p-0">
-          <h2>Configuration Page</h2>
+          <h2>Configuration Page
+            <button 
+              className="btn btn-success float-right"
+              title="Go to Dashboard"
+              onClick={goToDashboard}
+            >Publish</button>
+          </h2>
         </div>
       <div className="col-3 canvas-block mr-3 mb-2" onClick={handleNewCanvasClick}>
         <h2>Create new Canvas</h2>

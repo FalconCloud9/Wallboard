@@ -32,7 +32,7 @@ const Dashboard = (props) => {
     { windows.map( (window) => {
       const gridlayout = {...window.layout, ...{ static: true }};
       return (
-        <div className="custom-grid-item" key={window.id} data-grid={gridlayout}>
+        <div className="custom-grid-item publish-grid" key={window.id} data-grid={gridlayout}>
           {renderWindow(window)}
         </div>
       )

@@ -4,6 +4,8 @@ import { getWallboardData } from "../../api";
 import { connect } from 'react-redux';
 import { Carousel } from "react-bootstrap";
 import TextToHtml from '../TextToHtml/TextToHtml';
+import { createMarkup } from "../../utils";
+import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import "./index.css";
 
 const Dashboard = (props) => {
@@ -35,17 +37,34 @@ const Dashboard = (props) => {
   </GridLayout>
   }
 
-  const renderWindow = (window) => {
-    if (window.type === 'url') {
+  const renderWindow = window => {
+    if (window.type === "url") {
+      return <iframe className="window-iframe" src={window.content.url} />;
+    }
+    if (window.type === "coverpage") {
+      return <TextToHtml content={window.content} />;
+    }
+    if (window.type === "widget") {
+      const widgetHtml = window.content.widgetHtml;
       return (
-        <iframe className="window-iframe" src={window.content.url} />
+        <div
+          className="widget-container"
+          dangerouslySetInnerHTML={createMarkup(widgetHtml)}
+        ></div>
+      );
+    }
+    if (window.type === "twitter") {
+      const twitterHandle = window.content.twitterHandle;
+      return (
+        <TwitterTimelineEmbed
+          key={`${window.id}-${twitterHandle}`}
+          sourceType="profile"
+          screenName={twitterHandle}
+        />
       )
     }
-    return(
-        <TextToHtml content={window.content}/>
-    )
-  }
-  
+  };
+
   return (
     <div>
       <Carousel className="carousel-content" nextIcon={nextIcon} prevIcon={prevIcon}>

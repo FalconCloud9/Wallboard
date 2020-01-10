@@ -23,3 +23,8 @@
 .height-vh {
   height: 100vh;
 }
+
+.widget-container iframe, .widget-container twitter-widget{
+  width: 100% !important;
+  height: 100% !important;
+}

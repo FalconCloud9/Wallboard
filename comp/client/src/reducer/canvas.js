@@ -12,15 +12,15 @@ export const initialState = {
             url: 'https://docs.google.com/spreadsheets/d/12HBaG2yxOSQsM5VaUrSHRTjl5S7pgr1W07e0ZHhzFwA/edit#gid=369566078',
           },
           id: 'canvas-1window-1',
-          layout:  {i: 'canvas-1window-1', x: 0, y: 0, w: 4, h: 6}
+          layout:  {i: 'canvas-1window-1', x: 0, y: 0, w: 4, h: 6},
         },
         {
-          type: 'url',
+          type: 'twitter',
           content: {
-            url: 'https://falconcloud9.github.io/food-menu/',
+            twitterHandle: 'theCloudfactory',
           },
           id: 'canvas-1window-2',
-          layout:  {i: 'canvas-1window-2', x: 0, y: 8, w: 12, h: 8}
+          layout:  {i: 'canvas-1window-2', x: 4, y: 0, w: 3, h: 8}
         },
       ],
     },

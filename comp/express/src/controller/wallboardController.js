@@ -29,12 +29,14 @@ class WallboardController extends BaseController {
             if (!body.departmentName) throw Err.InvalidParams;
             const wallboards = await this.model.get({ departmentName: body.departmentName });
             if (wallboards.length != 0) {
-                this.update(req, res);
+                await this.update(req, res);
+                this.publisher.publish(body.departmentName, "reload")
                 return;
             }
             body.uuid = uuid();
             req.body = body;
-            super.create(req, res);
+            await super.create(req, res);
+            this.publisher.publish("reload")
         } catch (err) {
             this.responseWriter.err(res, err);
         }

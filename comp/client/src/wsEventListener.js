@@ -16,7 +16,7 @@ export class WsEventListener {
         }
 
         this.ws.onmessage = msg => {
-            console.log("received message : ", msg)
+            if (msg.data,msg.data == '"reload"') window.location.reload();
         }
     }
 }

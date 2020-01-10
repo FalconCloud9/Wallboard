@@ -60,3 +60,8 @@
   top: -6px;
   right: 10px;
 }
+
+.widget-container iframe, .widget-container twitter-widget{
+  width: 100% !important;
+  height: 100% !important;
+}

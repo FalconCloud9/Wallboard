@@ -4,6 +4,7 @@ import Select from "react-select";
 
 export default function WindowForm(props) {
   const [widgetHtml, setWidgetHtml] = useState('');
+  const [twitterHandle, setTwitterhandle] = useState('');
 
   const [coverHeader, setCoverHeader] = useState('');
   const [coverTitle, setCoverTitle] = useState('');
@@ -24,6 +25,10 @@ export default function WindowForm(props) {
     {
       label: 'Widget',
       value: 'widget'
+    },
+    {
+      label: 'Twitter Timeline',
+      value: 'twitter'
     }
   ]
 
@@ -54,12 +59,29 @@ export default function WindowForm(props) {
           widgetHtml
         }
       }
+    } else if (selectedType.value === 'twitter') {
+      formData = {
+        type: selectedType.value,
+        content: {
+          twitterHandle
+        }
+      }
     }
     console.log(formData);
     props.handleSave(formData);
   };
 
   const renderForm = () => {
+    if (selectedType.value === 'twitter') {
+      return (
+        <div className="col-12">
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Enter twitter handle</Form.Label>
+            <Form.Control type="text" value={twitterHandle} onChange={(evt) => setTwitterhandle(evt.target.value)} />
+          </Form.Group>
+        </div>
+      )
+    }
     if (selectedType.value === 'url') {
       return (
         <div className="col-12">

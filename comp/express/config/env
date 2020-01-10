@@ -1,6 +1,6 @@
 BASE_URL=http://localhost:3000
 # mongodb url
-MONGO_URL = mongodb://localhost:27017/mydb
+MONGO_URL = mongodb://mongo/mydb
 # listening port
 L_PORT = 3000
 # WS port

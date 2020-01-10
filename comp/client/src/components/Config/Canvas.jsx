@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import "./index.css";
 import { createMarkup } from "../../utils";
 import TextToHtml from "../TextToHtml/TextToHtml";
+import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 const Canvas = props => {
   const [blockModalShow, setBlockModalShow] = useState(false);
@@ -95,6 +96,16 @@ const Canvas = props => {
           dangerouslySetInnerHTML={createMarkup(widgetHtml)}
         ></div>
       );
+    }
+    if (window.type === "twitter") {
+      const twitterHandle = window.content.twitterHandle;
+      return (
+        <TwitterTimelineEmbed
+          key={`${window.id}-${twitterHandle}`}
+          sourceType="profile"
+          screenName={twitterHandle}
+        />
+      )
     }
   };
 

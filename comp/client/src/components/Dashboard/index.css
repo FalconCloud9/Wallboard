@@ -40,3 +40,8 @@
 .dashboard-content:hover .edit-to-config{
   opacity: 1;
 }
+
+.widget-container iframe, .widget-container twitter-widget{
+  width: 100% !important;
+  height: 100% !important;
+}

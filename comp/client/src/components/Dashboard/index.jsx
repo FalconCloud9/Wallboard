@@ -86,7 +86,7 @@ const Dashboard = (props) => {
         }
       </Carousel>
       <span className="edit-to-config" onClick={goToConfig}>
-        <i className="fa fa-edit"></i>
+        <i className="fa fa-edit fa-lg"></i>
       </span>
     </div>
   );

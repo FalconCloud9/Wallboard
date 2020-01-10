@@ -111,27 +111,33 @@ const Canvas = props => {
   };
 
   return (
-    <div className="container-fluid vh-100 pt-2">
-      <Link to={"/config"}>
-        <i className="fa fa-arrow-left"></i>
-      </Link>
-      <div className="canvas-edit-header d-flex justify-content-between">
-        <h2>{currentCanvas.title}</h2>
+    <div className="container-fluid vh-100 pt-2 edit-config">
+      <div className="row">
+        <header className="col-12 text-center">
+          <div className="float-left">
+            <Link to={"/config"}>
+              <i className="fa fa-arrow-left fa-lg"></i>
+            </Link>
+          </div>  
+          <h2>{currentCanvas.title}</h2>
+          <div className="float-right">
+            { (!single || windows.length === 0) ? <button
+              className="btn btn-primary create-window"
+              onClick={() => setBlockModalShow(true)}
+            >
+              Create Window
+            </button> : null }
+            {
+              single && windows.length ? <button
+              className="btn btn-primary create-window"
+              onClick={() => setBlockModalShow(true)}
+              >
+                Edit Window
+              </button> : null
+            }
+          </div>
+        </header>
       </div>
-      { (!single || windows.length === 0) ? <button
-        className="btn btn-primary create-window"
-        onClick={() => setBlockModalShow(true)}
-      >
-        Create Window
-      </button> : null }
-      {
-        single && windows.length ? <button
-        className="btn btn-primary create-window"
-        onClick={() => setBlockModalShow(true)}
-        >
-          Edit Window
-        </button> : null
-      }
       <div className="canvas-container h-100">
         {windows.length ? renderLayout() : null}
       </div>

@@ -71,3 +71,16 @@
   height: 100% !important;
   overflow: auto;
 }
+
+.edit-config h2 {
+  display: inline-block;
+}
+
+.edit-config header {
+  border-bottom: 1px solid #ccc;
+}
+
+.edit-config a {
+  position: relative;
+  top: 9px;
+}

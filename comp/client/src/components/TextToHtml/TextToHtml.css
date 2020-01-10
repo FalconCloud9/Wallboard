@@ -21,3 +21,10 @@
   padding: .75rem 1.25rem;
   font-weight: 700;
 }
+main .cover-heading {
+  font-size: 4.5vw;
+}
+main .lead {
+  font-size: 2.25vw;
+}
+

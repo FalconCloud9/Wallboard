@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import window from './window';
+import canvas from './canvas';
 
-export const rootReducer = combineReducers({ window });
+export const rootReducer = combineReducers({ canvas });

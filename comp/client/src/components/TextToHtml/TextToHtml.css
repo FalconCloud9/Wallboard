@@ -1,0 +1,23 @@
+.text-html {
+  background: url("../../images/4859.jpg");
+  background-size: cover;
+  font-family: 'Zilla Slab', serif;
+}
+.cover-containers {
+  display: -ms-flexbox;
+  display: flex;
+  color: #454545;
+}
+.masthead {
+  margin-bottom: 2rem;
+}
+.masthead-brand {
+  margin-bottom: 0;
+}
+.cover {
+  padding: 0 1.5rem;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+}

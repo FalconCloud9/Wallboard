@@ -3,12 +3,13 @@ const BaseController = require("./baseController");
 const Err = require("../constants/error");
 const uuid = require("uuid/v4");
 
-
 class WallboardController extends BaseController {
-    constructor(model, responseWriter) {
+    constructor(model, responseWriter, publisher) {
         super(model, responseWriter);
         this.create = this.create.bind(this);
         this.getWallboard = this.getWallboard.bind(this);
+        this.publishMessage = this.publishMessage.bind(this);
+        this.publisher = publisher
     }
 
     /**
@@ -27,10 +28,25 @@ class WallboardController extends BaseController {
             if (!body.wallboard) throw Err.InvalidParams;
             if (!body.departmentName) throw Err.InvalidParams;
             const wallboards = await this.model.get({ departmentName: body.departmentName });
-            if (wallboards.length != 0) throw Err.WallboardAlreadyRegistered;
+            if (wallboards.length != 0) {
+                this.update(req, res);
+                return;
+            }
             body.uuid = uuid();
             req.body = body;
             super.create(req, res);
+        } catch (err) {
+            this.responseWriter.err(res, err);
+        }
+    }
+
+
+    async publishMessage(req, res) {
+        try {
+            const key = req.params.key;
+            if (!key) throw Err.InvalidParams;
+            this.publisher.publish(key, req.body);
+            this.responseWriter.write(res, { msg: "ok" });
         } catch (err) {
             this.responseWriter.err(res, err);
         }

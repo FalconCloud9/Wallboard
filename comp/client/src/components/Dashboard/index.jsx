@@ -6,7 +6,7 @@ import "./index.css";
 
 const Dashboard = (props) => {
   useEffect(() => {
-    getWallboardData("departmentname");
+    getWallboardData("engineering");
   }, [])
 
   const prevIcon = '';

@@ -23,3 +23,20 @@
 .height-vh {
   height: 100vh;
 }
+
+.carousel-control-prev, .carousel-control-next {
+  display: none !important;
+}
+
+.edit-to-config {
+  position: fixed;
+  left: 5px;
+  bottom: 5px;
+  cursor: pointer;
+  opacity: 0;
+  transition: 1.3s;
+}
+
+.dashboard-content:hover .edit-to-config{
+  opacity: 1;
+}

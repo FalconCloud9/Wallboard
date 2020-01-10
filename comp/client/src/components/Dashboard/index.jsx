@@ -17,17 +17,20 @@ const Dashboard = (props) => {
   const prevIcon = '';
   const nextIcon = '';
 
+
+
   const renderLayout = (currentCanvas) => {
     const { windows, single } = currentCanvas;
     return single ? <div className="h-100 w-100">
-      <div className="h-100 w-100" key={window.id} data-grid={window.layout}>
+      <div className="h-100 w-100" key={windows[0].id} data-grid={{...windows[0].layout, ...{ static: true }}}>
         {renderWindow(windows[0])}
       </div>
     </div> :
-    <GridLayout className="layout" cols={12} rowHeight={50} width={window.innerWidth - 30} isDraggable={true} containerPadding={[15, 15]}>
+    <GridLayout className="layout" cols={12} rowHeight={50} width={window.innerWidth - 30} containerPadding={[15, 15]}>
     { windows.map( (window) => {
+      const gridlayout = {...window.layout, ...{ static: true }};
       return (
-        <div className="custom-grid-item" key={window.id} data-grid={window.layout}>
+        <div className="custom-grid-item" key={window.id} data-grid={gridlayout}>
           {renderWindow(window)}
         </div>
       )
@@ -45,20 +48,27 @@ const Dashboard = (props) => {
         <TextToHtml content={window.content}/>
     )
   }
+
+  const goToConfig = () => {
+    props.history.push('/config');
+  }
   
   return (
-    <div>
+    <div className="dashboard-content">
       <Carousel className="carousel-content" nextIcon={nextIcon} prevIcon={prevIcon}>
         {
           props.canvasList.map(canvas => {
             return (
-              <Carousel.Item key={canvas.id} className={`${canvas.single ? 'height-vh' : ''}`}>
+              <Carousel.Item key={canvas.id} className='height-vh'>
                 { renderLayout(canvas) }
               </Carousel.Item>
             )
           })
         }
       </Carousel>
+      <span className="edit-to-config" onClick={goToConfig}>
+        <i className="fa fa-edit"></i>
+      </span>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export class WsEventListener {
         }
 
         this.ws.onmessage = msg => {
-            console.log("received message : ", msg)
+            console.log("received message : ", msg.data)
         }
     }
 }

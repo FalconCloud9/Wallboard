@@ -45,7 +45,7 @@ const Canvas = props => {
       }
       return canvas;
     });
-    props.dispatch(saveCanvas(updatedCanvas));    
+    props.dispatch(saveCanvas(updatedCanvas));
   }
 
   const renderLayout = () => {

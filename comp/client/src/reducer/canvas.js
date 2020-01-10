@@ -32,7 +32,7 @@ export const initialState = {
       windows: [
         {
           type: 'coverpage',
-          content: {header: "Best Wishes", title: "Happy Birthday Madhuri", body: "May all of your dreams come true, with full of happiness", footer: "Positive Vibes"},
+          content: {header: "Best Wishes", title: "Happy Birthday Tim Pham", body: "May all of your dreams come true, with full of happiness", footer: "Positive Vibes"},
           id: 'canvas-1window-2',
           layout:  {i: 'canvas-1window-2', x: 6, y: 0, w: 6, h: 8}
         }

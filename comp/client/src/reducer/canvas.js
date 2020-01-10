@@ -9,10 +9,10 @@ export const initialState = {
         {
           type: 'url',
           content: {
-            url: 'https://docs.google.com/spreadsheets/d/12HBaG2yxOSQsM5VaUrSHRTjl5S7pgr1W07e0ZHhzFwA/edit#gid=369566078',
+            url: ' https://docs.google.com/spreadsheets/d/e/2PACX-1vS92wk2sSv5h3tbHf1gdpIVuQx9cHe0Lq_Hkq3mHrTyF9Rc3xVHGWX6OH6ko2_olSrxcNKO2Qn3Vorj/pubhtml',
           },
           id: 'canvas-1window-1',
-          layout:  {i: 'canvas-1window-1', x: 0, y: 0, w: 4, h: 6},
+          layout:  {i: 'canvas-1window-1', x: 0, y: 0, w: 6, h: 8},
         },
         {
           type: 'twitter',
@@ -20,7 +20,7 @@ export const initialState = {
             twitterHandle: 'theCloudfactory',
           },
           id: 'canvas-1window-2',
-          layout:  {i: 'canvas-1window-2', x: 4, y: 0, w: 3, h: 8}
+          layout:  {i: 'canvas-1window-2', x: 6, y: 0, w: 6, h: 8}
         },
       ],
     },
@@ -32,7 +32,7 @@ export const initialState = {
       windows: [
         {
           type: 'coverpage',
-          content: {header: "Best Wishes", title: "Happy Birthday Madhuri", body: "May all of your dream come true, with full of happiness", footer: "Positive Vibes"},
+          content: {header: "Best Wishes", title: "Happy Birthday Madhuri", body: "May all of your dreams come true, with full of happiness", footer: "Positive Vibes"},
           id: 'canvas-1window-2',
           layout:  {i: 'canvas-1window-2', x: 6, y: 0, w: 6, h: 8}
         }

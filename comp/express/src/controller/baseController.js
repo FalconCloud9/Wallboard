@@ -44,8 +44,8 @@ class BaseController {
     async update(req, res) {
         try {
             const params = req.body;
-            const data = await this.model.update({ uid: params.uid }, params);
-            this.responseWriter.write(res, data);
+            await this.model.update({ uid: params.uid }, params);
+            this.responseWriter.write(res, req.body);
         } catch (err) {
             this.responseWriter.err(res, err);
         }

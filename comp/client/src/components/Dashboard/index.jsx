@@ -11,7 +11,7 @@ const Dashboard = (props) => {
 
   const prevIcon = '';
   const nextIcon = '';
-  
+
   return (
     <div>
       <Carousel className="carousel-content" nextIcon={nextIcon} prevIcon={prevIcon}>

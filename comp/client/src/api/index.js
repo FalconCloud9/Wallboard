@@ -5,51 +5,14 @@ import { fetchWallboardData } from "../action";
 const base_url = "http://localhost:3000";
 
 export const getWallboardData = async (name) => {
-  const sample = {
-    canvasList: [
-      {
-        id: 'canvas-1',
-        title: 'Canvas 1',
-        order: 1,
-        windows: [
-          {
-            title: 'window-1',
-            url: 'https://www.example.com',
-            id: 'canvas-1window-1',
-            layout: { i: 'canvas-1window-1', x: 0, y: 0, w: 3, h: 4 }
-          }
-        ],
-      },
-      {
-        id: 'canvas-2',
-        title: 'Canvas 2',
-        order: 1,
-        windows: [
-          {
-            title: 'window-1',
-            url: 'https://falconcloud9.github.io/collections/waterify/',
-            id: 'canvas-1window-1',
-            layout: { i: 'canvas-1window-1', x: 0, y: 0, w: 3, h: 4 }
-          }
-        ],
-      },
-      ,
-      {
-        id: 'canvas-3',
-        title: 'Canvas 3',
-        order: 1,
-        windows: [
-          {
-            title: 'window-1',
-            url: 'https://falconcloud9.github.io/food-menu/',
-            id: 'canvas-1window-1',
-            layout: { i: 'canvas-1window-1', x: 0, y: 0, w: 3, h: 4 }
-          }
-        ],
-      }
-    ]
+  const response = await axios.get(`${base_url}/wallboard/engineering`);
+  const data = response.data
+  console.log("data :: ", data, name)
+  let canvasinfo = { canvasList: [] }
+  if (data.Data && data.Data.length > 0) {
+    canvasinfo = data.Data[0].wallboard.data
   }
-  // const response = await axios.get(`${base_url}/wallboard/${name}`);
-  // return response.data;
-  store.dispatch(fetchWallboardData(sample));
+  console.log({ canvasinfo })
+  // return response.data.wallboard.data;
+  store.dispatch(fetchWallboardData(canvasinfo));
 };

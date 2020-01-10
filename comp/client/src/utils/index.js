@@ -25,7 +25,7 @@ function getScripts(src) {
           resultHtml += otherHtml
       } else { // we need to now inject this script
           resultHtml += otherHtml
-              + `<img src="errimg" onerror="${innerHTML}"></img>`
+              + `<img src="errimg" style="display:none" onerror="${innerHTML}"></img>`
       }
       startIndex = endIndex + outerHTML.length
   }

@@ -19,8 +19,8 @@ export const initialState = {
           content: {
             url: 'https://falconcloud9.github.io/food-menu/',
           },
-          id: 'canvas-1window-3',
-          layout:  {i: 'canvas-1window-3', x: 0, y: 8, w: 12, h: 8}
+          id: 'canvas-1window-2',
+          layout:  {i: 'canvas-1window-2', x: 0, y: 8, w: 12, h: 8}
         },
       ],
     },

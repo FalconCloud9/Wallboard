@@ -76,7 +76,7 @@
   display: inline-block;
 }
 
-.edit-config header {
+.edit-config .col-12 header {
   border-bottom: 1px solid #ccc;
 }
 

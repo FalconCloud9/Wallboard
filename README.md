@@ -18,7 +18,7 @@ docker run -p 27017:27017 mongo
 ### Run the server
 
 ```
-cd comp/express && npm start
+make -C comp/express start
 ```
 
 
